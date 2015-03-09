@@ -10,8 +10,6 @@ def process_input(input_line)
 		end
 		i=1
 		array=input_line.split ""
-		array.delete_at(i)
-		i=i+1
 		
 		while(i<=array.length)		
 		
