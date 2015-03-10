@@ -1,5 +1,5 @@
 
-def check_position(n,x,y,solution)
+def check_position_available(n,x,y,solution)
 
 	if x>=0 and x<n and y>=0 and y<n and solution[x][y]==-1
 		return true
@@ -24,7 +24,7 @@ def solveKT(n,x_coord,y_coord,move_position,solution_arr,x_move_arr,y_move_arr)
 		next_x=x_coord+x_move_arr[iterator]
 		next_y=y_coord+y_move_arr[iterator]
 		
-		if(check_position(n,next_x,next_y,solution_arr))		
+		if(check_position_available(n,next_x,next_y,solution_arr))		
 		
 			solution_arr[next_x][next_y]=move_position
 			if(solveKT(n,next_x,next_y,move_position+1,solution_arr,x_move_arr,y_move_arr)==true)
@@ -42,26 +42,29 @@ def solveKT(n,x_coord,y_coord,move_position,solution_arr,x_move_arr,y_move_arr)
 end
 	
 
-def solve(n,pos_x,pos_y)
+def knight_tour(grid_no,pos_x,pos_y)
+	
+	
 
-        solution=Array.new(n){Array.new(n,-1)}
-	i=0,j=0
+        solution=Array.new(grid_no){Array.new(grid_no,-1)}
 	 
         y_move=[2, 1, -1, -2, -2, -1,  1,  2]
         x_move=[ 1, 2,  2,  1, -1, -2, -2, -1]
         solution[pos_x][pos_y]=0
-        print solution
+	
+	print "initialy when we set knight at #{pos_x} and #{pos_y}\n"
+        print "#{solution}\n"
 
-        if solveKT(n,0,0,1,solution,x_move,y_move)==false
+        if solveKT(grid_no,pos_x,pos_y,1,solution,x_move,y_move)==false
 
                 print "do not exist"
                         return;
         else
 	puts "Solution:"
 		itrtr1=0
-                while itrtr1<n
+                while itrtr1<grid_no
 			itrtr2=0
-			while itrtr2<n
+			while itrtr2<grid_no
 				print "\t"
 				print solution[itrtr1][itrtr2]
 				itrtr2=itrtr2+1
@@ -79,10 +82,10 @@ end
 
 	
 	
-print "Enter value of n"	
-n=gets.chomp.to_i
 
-solve(n,0,0)
+#first parameter:grid no and 0,0 are the initial x_position and y_position of knight
+
+knight_tour(8,0,0)
 
 
 
