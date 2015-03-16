@@ -1,0 +1,6 @@
+begin
+ puts "Welcome to shop inventory...."
+ require 'inventory'
+rescue LoadError
+  require 'inventory'
+end
